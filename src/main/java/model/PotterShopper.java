@@ -16,6 +16,12 @@ public class PotterShopper {
             }
             return 16.00;
         }
+        if (books.size() == 3) {
+            if (!books.get(0).sameAs(books.get(1)) && !books.get(1).sameAs(books.get(2))) {
+                return 21.60;
+            }
+            return 24.00;
+        }
 
         return 0;
     }
