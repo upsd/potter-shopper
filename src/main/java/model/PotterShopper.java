@@ -2,8 +2,10 @@ package model;
 
 import model.book.Book;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class PotterShopper {
 
@@ -19,7 +21,27 @@ public class PotterShopper {
     }
 
     public double billFor(List<Book> books) {
-        return tryAndApplyDiscountTo(books);
+        List<Book> toBeDiscounted = getBooksToBeDiscounted(books);
+        List<Book> nonDiscountedBooks = getNonDiscountedBooks(books, toBeDiscounted);
+
+        return tryAndApplyDiscountTo(toBeDiscounted) + priceFor(nonDiscountedBooks);
+    }
+
+    private List<Book> getNonDiscountedBooks(List<Book> books, List<Book> toBeDiscounted) {
+        List<Book> nonDiscountedBooks = new ArrayList<>();
+        nonDiscountedBooks.addAll(books);
+
+        toBeDiscounted.forEach(book -> nonDiscountedBooks.remove(book));
+
+        return nonDiscountedBooks;
+    }
+
+    private List<Book> getBooksToBeDiscounted(List<Book> books) {
+        return books.stream().distinct().collect(Collectors.toList());
+    }
+
+    private double priceFor(List<Book> nonDiscountedBooks) {
+        return PRICE_FOR_ONE_BOOK * nonDiscountedBooks.size();
     }
 
     private double tryAndApplyDiscountTo(List<Book> books) {
