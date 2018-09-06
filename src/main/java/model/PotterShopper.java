@@ -10,6 +10,15 @@ public class PotterShopper {
         if (books.size() == 1) {
             return 8.00;
         }
+
+        if (books.size() > 1) {
+            return tryAndApplyDiscountTo(books);
+        }
+
+        return 0;
+    }
+
+    private double tryAndApplyDiscountTo(List<Book> books) {
         if (books.size() == 2) {
             if (areBooksUnique(books)) {
                 return 15.20;
