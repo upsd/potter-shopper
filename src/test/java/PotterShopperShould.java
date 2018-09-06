@@ -80,4 +80,17 @@ public class PotterShopperShould {
 
         assertThat(price, is(30.00));
     }
+
+    @Test
+    public void apply_discount_only_for_distinct_books() {
+        double price = bookshop.billFor(asList(
+                new Book(PotterBooks.FIRST_BOOK),
+                new Book(PotterBooks.FIRST_BOOK),
+                new Book(PotterBooks.SECOND_BOOK),
+                new Book(PotterBooks.THIRD_BOOK)
+        ));
+
+
+        assertThat(price, is(29.60));
+    }
 }
