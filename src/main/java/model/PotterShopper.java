@@ -40,18 +40,18 @@ public class PotterShopper {
         return books.stream().distinct().collect(Collectors.toList());
     }
 
-    private double priceFor(List<Book> nonDiscountedBooks) {
-        return PRICE_FOR_ONE_BOOK * nonDiscountedBooks.size();
+    private double priceFor(List<Book> books) {
+        return PRICE_FOR_ONE_BOOK * books.size();
     }
 
     private double tryAndApplyDiscountTo(List<Book> books) {
         if (areBooksUnique(books) && books.size() > 1) {
-            double costOfBooks = PRICE_FOR_ONE_BOOK * books.size();
+            double costOfBooks = priceFor(books);
             double discount = 1 - discounts.get(books.size());
 
             return costOfBooks * discount;
         }
-        return PRICE_FOR_ONE_BOOK * books.size();
+        return priceFor(books);
     }
 
     private boolean areBooksUnique(List<Book> books) {
