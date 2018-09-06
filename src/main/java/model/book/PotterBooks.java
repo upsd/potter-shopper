@@ -1,5 +1,5 @@
 package model.book;
 
 public enum PotterBooks {
-    FIRST_BOOK
+    SECOND_BOOK, FIRST_BOOK
 }
