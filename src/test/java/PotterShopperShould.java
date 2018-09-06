@@ -42,4 +42,15 @@ public class PotterShopperShould {
 
         assertThat(price, is(15.20));
     }
+
+    @Test
+    public void apply_ten_percent_discount_for_three_distinct_books() {
+        double price = bookshop.billFor(asList(
+                new Book(PotterBooks.FIRST_BOOK),
+                new Book(PotterBooks.SECOND_BOOK),
+                new Book(PotterBooks.THIRD_BOOK)));
+
+
+        assertThat(price, is(21.60));
+    }
 }
