@@ -19,19 +19,11 @@ public class PotterShopper {
     }
 
     public double billFor(List<Book> books) {
-        if (books.size() == 1) {
-            return PRICE_FOR_ONE_BOOK;
-        }
-
-        if (books.size() > 1) {
-            return tryAndApplyDiscountTo(books);
-        }
-
-        return 0;
+        return tryAndApplyDiscountTo(books);
     }
 
     private double tryAndApplyDiscountTo(List<Book> books) {
-        if (areBooksUnique(books)) {
+        if (areBooksUnique(books) && books.size() > 1) {
             double costOfBooks = PRICE_FOR_ONE_BOOK * books.size();
             double discount = 1 - discounts.get(books.size());
 
