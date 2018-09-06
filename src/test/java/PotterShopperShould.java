@@ -1,3 +1,6 @@
+import model.book.Book;
+import model.book.PotterBooks;
+import model.PotterShopper;
 import org.junit.Before;
 import org.junit.Test;
 
