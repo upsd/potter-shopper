@@ -11,36 +11,34 @@ public class PotterShopper {
             return 8.00;
         }
         if (books.size() == 2) {
-            if (!books.get(0).sameAs(books.get(1))) {
+            if (areBooksUnique(books)) {
                 return 15.20;
             }
             return 16.00;
         }
         if (books.size() == 3) {
-            if (!books.get(0).sameAs(books.get(1))
-                    && !books.get(1).sameAs(books.get(2))) {
+            if (areBooksUnique(books)) {
                 return 21.60;
             }
             return 24.00;
         }
         if (books.size() == 4) {
-            if (!books.get(0).sameAs(books.get(1))
-                    && !books.get(1).sameAs(books.get(2))
-                    && !books.get(2).sameAs(books.get(3))) {
+            if (areBooksUnique(books)) {
                 return 25.60;
             }
             return 32.00;
         }
         if (books.size() == 5) {
-            if (!books.get(0).sameAs(books.get(1))
-                    && !books.get(1).sameAs(books.get(2))
-                    && !books.get(2).sameAs(books.get(3))
-                    && !books.get(3).sameAs(books.get(4))) {
+            if (areBooksUnique(books)) {
                 return 30.00;
             }
             return 40.00;
         }
 
         return 0;
+    }
+
+    private boolean areBooksUnique(List<Book> books) {
+        return books.stream().distinct().count() == books.size();
     }
 }
